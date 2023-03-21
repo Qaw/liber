@@ -5,6 +5,7 @@ import { LiberActorSheet } from "./sheets/liberactorsheet.js";
 import { LiberItem } from "./sheets/liberitem.js";
 import { LiberItemSheet } from "./sheets/liberitemsheet.js";
 import * as Chat from "./sheets/liberchat.js";
+import { Macros } from "./macros.js";
 
 //const myInstance = new MyClass();
 Hooks.once("init", async function() {
@@ -28,4 +29,12 @@ Hooks.once("init", async function() {
 
 });
 
-
+/**
+ * Crée une macro au drop d'un objet sur la hotbar 
+ */
+Hooks.on("hotbarDrop", (bar, data, slot) => {
+    if (["Item"].includes(data.type)) {
+        Macros.createLiberMacro(data, slot);
+        return false;
+    }
+});
