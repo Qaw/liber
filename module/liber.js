@@ -33,7 +33,7 @@ Hooks.once("init", async function() {
  * Crée une macro au drop d'un objet sur la hotbar 
  */
 Hooks.on("hotbarDrop", (bar, data, slot) => {
-    if (["Item"].includes(data.type)) {
+    if (["Item", "ability"].includes(data.type)) {
         Macros.createLiberMacro(data, slot);
         return false;
     }
